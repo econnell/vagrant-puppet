@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+  config.vm.define "jenkins_master" do |jenkins_master|
+    jenkins_master.vm.box = "centos-6.6-vbox-puppet"
+    jenkins_master.vm.network :private_network, ip: "192.168.33.11"
+    jenkins_master.vm.hostname = "jenkins-master.vagrant.envysion.com"
+    jenkins_master.vm.provision "puppet_server" do |puppet|
+      puppet.options = "--verbose"
+    end
+  end
+
+  config.vm.define "jenkins_slave" do |jenkins_slave|
+    jenkins_slave.vm.box = "centos-6.6-vbox-puppet"
+    jenkins_slave.vm.network :private_network, ip: "192.168.33.12"
+    jenkins_slave.vm.hostname = "jenkins-slave.vagrant.envysion.com"
+    jenkins_slave.vm.provision "puppet_server" do |puppet|
+      puppet.options = "--verbose --debug"
+    end
+  end
