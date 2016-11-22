@@ -1,0 +1,10 @@
+# The location to use for storing cached Git repos
+:cachedir: './cache'
+
+# A list of git repositories to create
+:sources:
+  # This will clone the git repository and instantiate an environment per
+  # branch in /etc/puppetlabs/code/environments
+  :YOURORG:
+    remote: 'git@bitbucket.org:YOURORG/R10K-CONTROL-REPO'
+    basedir: './environments'
